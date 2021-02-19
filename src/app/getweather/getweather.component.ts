@@ -1,6 +1,7 @@
 import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
+import {ViewChild, ElementRef} from '@angular/core';
 import{OpenWeatherService} from "../open-weather.service"
 
 
@@ -11,7 +12,7 @@ import{OpenWeatherService} from "../open-weather.service"
   styleUrls: ['./getweather.component.css']
 })
 export class GetweatherComponent implements OnInit {
-  cityName: any;
+  
   public weatherData: any;
   
   
@@ -21,10 +22,10 @@ export class GetweatherComponent implements OnInit {
   ) { }
 
   
-  weatherInfo(cityName:string){
-    console.log(cityName);
+  weatherInfo(city:HTMLInputElement){
+   // console.log(city);
     this.openWeatherService
-      .getWeather(this.cityName)
+      .getWeather(city.value)
       .subscribe(data =>this.weatherData=data )
       console.log(this.weatherData);
     
